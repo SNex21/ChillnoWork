@@ -1,0 +1,16 @@
+@font-face{
+  font-family: FiraSans;
+  src: url("fonts/FiraSans-ExtraBold.otf");
+}
+@font-face{
+  font-family: FiraSansBook;
+  src: url("fonts/FiraSans-Book.otf");
+}
+@font-face{
+  font-family: FiraSansMedium;
+  src: url("fonts/FiraSans-Medium.otf");
+}
+@font-face{
+  font-family: FiraSansLight;
+  src: url("fonts/FiraSans-Light.otf");
+}

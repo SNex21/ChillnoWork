@@ -1,0 +1,383 @@
+body{
+	padding: 0;
+	margin: 0;
+	display: flex;
+  	flex-direction: column;
+}
+header{
+	width: 100%;
+	height: 160px;
+	background-color: #f0f0f2;
+	display: flex;
+  	align-items: center;
+  	justify-content: center;
+}
+#mainNav{
+	display: flex;
+  	align-items: center;
+  	font-family: FiraSans;
+  	font-size: 18px;
+  	width: 1280px;
+}
+#mainNav>a, p, button, img{
+	float: left;
+}
+#mainNav img{
+	cursor: pointer;
+}
+#mainNav a{
+	color: #332a61;
+	text-decoration: none;
+	cursor: pointer;
+	transition: 0.5s;
+}
+#mainPage{
+	margin-left: 50px;
+}
+#interactiveMap{
+	margin-left: 20px;
+	width: 300px; 
+}
+nav#mainNav p{
+	margin-left: 15px;
+	margin-right: 15px;
+}
+#sign_in{
+	margin-left: 130px;
+	width: 230px;
+	height: 40px;
+	border-style: none;
+	font-family: FiraSans;
+	background-color: #332a61;
+	font-size: 16px;
+	color: white;
+	cursor: pointer;
+	border-radius: 30px;
+	transition: 0.5s;
+}
+#registration{
+	border-style: none;
+	width: 245px;
+	height: 40px;
+	font-family: FiraSans;
+	background-color: #7661d8;
+	font-size: 16px;
+	color: white;
+	cursor: pointer;
+	border-radius: 30px;
+	transition: 0.5s;
+}
+#accountIMG{
+	margin-left: 30px;
+	float: left;
+	border-radius: 23px;
+	border-style: none;
+}
+
+/* ---------------- */
+#headline{
+	margin: 0px;
+	background-color: #f0f0f2;
+	width: 100%;
+	height: 170px;
+	display: flex;
+  	align-items: center;
+}
+section#headline h1{
+	font-family: FiraSansMedium;
+	font-size: 34px;
+	margin: 0px;
+	color: #332a61;
+}
+section#headline p{
+	margin: 0px;
+	font-size: 30px;
+	font-family: FiraSansBook;
+	color: #7661d8;
+}
+section#headline div{
+	width: 680px;
+	margin-left: 260px;
+	margin-bottom: 60px;
+}
+section#headline img{
+	margin-left: 200px;
+	margin-bottom: 70px;
+}
+#middleNav{
+	height: 55px;
+	width: 720px;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+  	align-items: center;
+  	justify-content: center;
+  	font-size: 22px;
+  	margin-top: -25px;
+}
+.navigationDiv{
+	background-color: #332a61;
+	color: white;
+	font-family: FiraSans;
+	height: 100%;
+	width: 200px;
+	display: flex;
+  	align-items: center;
+  	justify-content: center;
+	cursor: pointer;
+	transition: 0.5s;
+	z-index: 1;
+}
+.navigationDiv img{
+	margin: 0%;
+}
+#middleNav button{
+	height: 100%;
+	width: 120px;
+	background-color: #7661d8;
+	color: white;
+	font-family: FiraSans;
+	border-style: none;
+	font-size: 22px;
+	border-radius: 0px 30px 30px 0px;
+	cursor: pointer;
+	transition: 0.5s;
+}
+.navigationDiv:first-of-type{
+	border-radius: 30px 0px 0px 30px;
+}
+#choseDate{
+	/* background: linear-gradient(to top, #7661d8, #332a61); */
+	background-color: #7661d8;
+	position: absolute;
+	display: flex;
+	margin-left: -120px;
+	margin-top: 10px;
+	width: 200px;
+	height: 45px;
+	justify-content: center;
+	align-items: center;
+	border-radius: 0px 0px 20px 20px;
+	transition: 1s;
+	z-index: 0;
+}
+.modal{
+	padding: 50px;
+	position: fixed; top: 50%; left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+  }
+#choseDate input{
+	height: 20px;
+	font-family: FiraSansMedium;
+	font-size: 14px;
+	border-radius: 5px 5px;
+	border-color: #332a61;
+	outline: none;
+	text-align: center;
+	background-color: white;
+}
+
+#map {
+	height: 400px;
+	/* The height is 400 pixels */
+	width: 100%;
+	/* The width is the width of the web page */
+  }
+/* ---------------- */
+.heading{
+	font-family: FiraSansMedium;
+	color: #332a61;
+	font-size: 30px;
+	margin: 70px 0px 50px 260px;
+}
+#slider_wrapper{
+	justify-content: center;
+	margin-left: auto;
+	margin-right: auto;
+	height: 562px;
+	width: 1250px;
+}
+#slider{
+	overflow: hidden;
+	left: 50px;
+	width: 1196px;
+	margin-left: auto;
+	margin-right: auto;
+	height: 562px;
+}
+#leftArrow{
+	position: relative;
+	position: absolute;
+	cursor: pointer;
+	margin-top: 281px;
+	margin-right: 4px;
+	float: right;
+}
+#rightArrow{
+	position: relative;
+	position: absolute;
+	cursor: pointer;
+	margin-top: 281px;
+	margin-left: 1225px;
+	float: left;
+}
+#viewport{
+	width: 6180px;
+   	transition-duration: 1s;
+	display: flex;
+	align-items: center;
+}
+.info_slide{
+	display: flex;
+	flex-direction: column;
+	background-color: #f0f0f2;
+	width: 370px;
+	height: 560px;
+	border: 1px solid #332a61;
+	margin-right: 40px;
+}
+.info{
+	display: flex;
+	flex-direction: column;
+}
+.info > p, h3, h4, h5{
+	margin: 0px 0px 0px 30px;
+}
+.info h3{
+	font-family: FiraSansLight;
+	color: #7661d8;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	font-size: 23px;
+}
+.info h4{
+	font-family: FiraSansMedium;
+	color: #332a61;
+	margin-bottom: 40px;
+	font-size: 19px;
+}
+.info p{
+	font-family: FiraSansBook;
+	color: #b9b9c4;
+	margin-bottom: 5px;
+	font-size: 18px;
+}
+.info h5{
+	font-family: FiraSansMedium;
+	color: #332a61;
+	margin-bottom: 40px;
+	font-size: 17px;
+}
+.moreInfo{
+	background-color: #332a61;
+	color: white;
+	width: 230px;
+	height: 40px;
+	border-style: none;
+	cursor: pointer;
+	font-size: 18px;
+	font-family: FiraSans;
+	margin-left: auto;
+	margin-right: auto;
+	transition: 0.5s;
+}
+.slidesButs{
+	width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #b9b9c4;
+	border-style: none;
+	margin-right: 10px;
+	cursor: pointer;
+	transition: 1s;
+}
+#sliderButs{
+	margin-left: auto;
+	margin-right: auto;
+	width: 155px;
+	height: 25px;
+	margin-top: 30px;
+}
+#textTable{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+	margin-bottom: 40px;
+	border-spacing: 40px 40px;
+}
+#textTable td{
+	width: 500px;
+	height: 120px;
+	padding: 0%;
+	transition: 1s;
+}
+.blockOfText{
+    background-color: white;
+    width: 100%;
+    height: 100%;
+	display: flex;
+	align-items: center;
+	transition: 1s;
+}
+.numberOfPoints{
+	background-color: #332a70;
+	min-width: 60px;
+	min-height: 60px;
+	max-width: 60px;
+	max-height: 60px;
+	transform: rotate(45deg);
+	margin-left: 20px;
+	margin-right: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.numberOfPoints h1{
+	color: white;
+	transform: rotate(-45deg);
+	font-family: FiraSans;
+	font-size: 35px;
+}
+.blockOfText p{
+	font-family: FiraSansMedium;
+	font-size: 20px;
+	color: #7661d8;
+}
+/* ---------------- */
+footer{
+	background-color: #dbdadf;
+	height: 230px;
+}
+footer h3{
+	font-family: FiraSans;
+	font-size: 20px;
+	color: #332a61;
+}
+footer p{
+	font-size: 18px;
+	font-family: FiraSansBook;
+}
+footer p:nth-of-type(2){
+	position: relative;
+	bottom: 10px;
+	right: 6px;
+}
+/* ---------------- */
+#upBut{
+	position: fixed;
+	width: 45px;
+	height: 45px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #332a61;
+	bottom: 40px;
+	right: 40px;
+	opacity: 0;
+	transition-duration: 1.5s;
+}
+
+

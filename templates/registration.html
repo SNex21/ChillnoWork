@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>РЕГИСТРАЦИЯ</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', path='css/img/photo1659286225.png') }}">
+	  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', path='css/fontStyle.css') }}">
+    <link href="{{ url_for('static', path='css/registerStyles.css') }}" rel="stylesheet">
+</head>
+<body>
+
+    <main>
+  
+      <img src="{{ url_for('static', path='css/img/mainLogo.png') }}" alt="">
+
+        <div class="form-div">
+          <input required  type="email" name="email" class="form-data" id="email">
+          <label id="email-label" for="email">Email</label>
+        </div>
+
+        <div class="form-div">
+          <input required  type="password" name="password" class="form-data" id="password">
+          <label id="password-label" for="password">Пароль</label>
+        </div>
+
+        <p><input type="checkbox">Запомнить меня</p>
+        <button id="loginBut" type="submit">ЗАРЕГАТЬСЯ</button>
+        <p>ОтдыхатьНеРаботать©2022</p>
+
+    </main>
+    
+
+      
+    <!-- <script src="{{ url_for('static', path='js/registerJS.js') }}"></script> -->
+    <script src="{{ url_for('static', path='js/registerJS.js') }}"></script>
+
+    </body>
+</html>

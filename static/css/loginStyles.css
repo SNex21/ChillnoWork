@@ -1,0 +1,77 @@
+body{
+    padding: 0%;
+    margin: 0%;
+}
+main{
+    width: 100%;
+    height: 600px;
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+main>p{
+    font-family: firaSansBook;
+}
+#loginBut{
+    width: 270px;
+    border-radius: 10px;
+    font-family: FiraSansMedium;
+    height: 48px;
+    background-color: #7661d8;
+    color: white;
+    border-style: none;
+    font-size: 20px;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#loginBut:hover{
+    background-color: #7661f8;
+}
+main>img{
+    margin-bottom: 15px;
+}
+label{
+    width: 50px;
+    height: 18px;
+    position: absolute;
+    z-index: 1;
+    margin-left: 140px;
+    font-family: FiraSansMedium;
+    transition: 0.4s;
+}
+.form-data{
+    height: 100%;
+    width: 100%;
+    font-family: firaSansbook;
+    border-style: solid;
+    border-color: gray;
+}
+.form-div{
+    height: 68px;
+    width: 320px;
+    display: flex;
+    align-items: center;
+}
+#email{
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+  
+#password{
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+
+.activeInputForLable{
+    transform: translateY(-23px);
+    color: gray;
+    font-size: 15px;
+}

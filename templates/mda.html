@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="{{ url_for('static', path='css/styles.css') }}" rel="stylesheet">
+	<link href="{{ url_for('static', path='css/fontStyle.css') }}" rel="stylesheet">
+	<link href="{{ url_for('static', path='css/hovers.css') }}" rel="stylesheet">
+	<link href="{{ url_for('static', path='css/JS_Style.css') }}" rel="stylesheet">
+	<link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', path='css/img/photo1659286225.png') }}">
+	
+	<link href="{{ url_for('static', path='jquery-ui-1.13.1.custom/jquery-ui.css') }}" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+	<title>ОТДЫХАТЬнеРАБОТАТЬ</title>
+</head>
+<body>
+	
+	<script src="{{ url_for('static', path='jquery-ui-1.13.1.custom/jquery-ui.js') }}"></script>
+	<!-- Шапка сайта -->
+	<header>
+		<nav id="mainNav">
+			<img src="{{ url_for('static', path='css/img/mainLogo.png') }}">
+			<a href="http://127.0.0.1:8000/" id="mainPage">ГЛАВНАЯ</a>
+			<a href="http://127.0.0.1:8000/user/map" id="interactiveMap">ИНТЕРАКТИВНАЯ КАРТА</a>
+			<div id="width" hidden style="height:40px;width:426px;"></div>
+			<a href="/user/login"><button id="sign_in">ВОЙТИ В АККАУНТ</button></a>
+			<p id ='or'>ИЛИ</p>
+			<button id="registration" onclick="location.href = '/user/signup/'">ЗАРЕГИСТРИРОВАТЬСЯ</button>
+			<div hidden id = "boba">
+			<img src="{{ url_for('static', path='css/img/accountLogo.png') }}"id="accountIMG">
+			</div>
+			<div id="wow"></div>
+		</nav>
+	</header>
+
+	<!-- Основная часть сайта -->
+
+	<main>
+
+		<!-- Слоган сайта -->
+		
+		<section id="headline">
+			<div>
+				<h1>Найди своё классное место для отдыха</h1>
+				<p>которое ещё не видел, в котором ещё не бывал</p>
+			</div>
+			<img src="{{ url_for('static', path='css/img/map.png') }}">
+		</section>
+
+		<!-- Кнопки навигации в середине -->
+		<nav id="middleNav">
+			<div class="navigationDiv" id="pickPlace">
+				<img src="{{ url_for('static', path='css/img/location.png') }}">
+				<p>КУДА ЕДУ</p>
+			</div>
+			<div class="navigationDiv" id="pickDate">
+				<img src="{{ url_for('static', path='css/img/calendar.png') }}">
+				<p>КОГДА ЕДУ</p>
+			</div>
+			<div class="navigationDiv" id="pickPeople">
+				<img src="{{ url_for('static', path='css/img/people.png') }}">
+				<p>КТО ЕДЕТ</p>
+			</div>
+			<button id="searchBut">ИСКАТЬ</button>
+			<div id="choseDate">
+				<input type="text" maxlength="10" id="inpDate" placeholder="Выберите дату">
+			</div>
+		</nav>
+
+		<!-- Главная информация сайта -->
+		<section id="mainInfo">
+			<h1 class="heading">Рекомендации уже отдохнувших</h1>
+			
+			<div id="slider_wrapper"> <!-- Обёртка слайдера -->
+				<!-- Кнопки прокрутки -->
+				<img src="{{ url_for('static', path='css/img/arrow_left.png') }}" id="leftArrow">
+				<img src="{{ url_for('static', path='css/img/arrow_right.png') }}" id="rightArrow">
+				<!-- Слайдер -->
+				<div id="slider">
+          			<div id="viewport">
+						<!-- 1-й слайд -->
+						{% for place in places %}
+        				<div class="info_slide">
+        					<img src="{{ place.img }}" class="infoImages">
+        					<div class="info">
+        						<h3>{{ place.name }}, {{ place.near_city }}</h3>
+        						<h4>{{ place.short_descr }}</h4>
+								<p>Стоимость на одного человека:</p>
+								<h5>От {{ place.price_from }} рублей</h5>
+								<button onclick="location.href = '/{{ place.url }}/'" class="moreInfo">ПОДРОБНЕЕ</button>
+        					</div>
+        				</div>
+						{% endfor %}
+
+
+        				</div>
+          			</div>
+          		</div>
+			</div>
+
+			<!-- Кнопки переключения слайдов -->
+			<nav id="sliderButs">
+				<button class="slidesButs"></button>
+				<button class="slidesButs"></button>
+				<button class="slidesButs"></button>
+				<button class="slidesButs"></button>
+				<button class="slidesButs"></button>
+			</nav>
+
+			<h1 class="heading">Найди новые, классные места для отдыха совсем недорого</h1>
+			<!-- Пункты информации -->
+			<table id="textTable">
+				<tr>
+					<td>
+						<div class="blockOfText">
+							<div class="numberOfPoints"><h1>1</h1></div>
+							<p>Необычные и интересные места для молодёжи</p>
+						</div>
+					</td>
+					<td>
+						<div class="blockOfText">
+							<div class="numberOfPoints"><h1>3</h1></div>
+							<p>Возможен бесплатный отдых</p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="blockOfText">
+							<div class="numberOfPoints" id="vefef"><h1>2</h1></div>
+							<p>Информация с проверенных государственных и коммерчесих источников</p>
+						</div>
+					</td>
+					<td>
+						<div class="blockOfText">
+							<div class="numberOfPoints"><h1>4</h1></div>
+							<p>Возможность подобрать отдых с минимальными затратами</p>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</section>		
+	</main>
+
+	<footer>
+		<img src="{{ url_for('static', path='css/img/mainLogo.png') }}">
+		<p>Техническая подержка: </p>
+		<h3>support@restnotsupport.ru</h3>
+		<img src="" alt="">
+		<img src="" alt="">	
+		<img src="" alt="">	
+		<p>@2022 Отдыхатьнеработать.рф</p>
+	</footer>
+	<button id="upBut"><img src="{{ url_for('static', path='css/img/upButton.png') }}"></button>
+
+	<script type="text/javascript" src="{{ url_for('static', path='js/scripts.js') }}"></script>
+</body>
+</html>

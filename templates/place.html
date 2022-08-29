@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <title>ОТДЫХАТЬнеРАБОТАТЬ - {{ place.name }}</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', path='css/img/photo1659286225.png') }}">
+  </head>
+  <body>
+
+    <h3>{{ place.name }}<br>{{ place.description }}<br>{{ location }}</h3>
+
+    {% for part in parts %}
+
+    <div class="p-4 p-md-5 mb-4 rounded text-bg-dark">
+      <div class="col-md-6 px-0">
+        <h1 class="display-4 fst-italic">{{ part.name }}</h1>
+        <p class="lead my-3">{{ part.description }}</p>
+        <p class="lead mb-0">{{ part.price }}</p>
+      </div>
+    </div>
+
+    {% endfor %}
+
+    <div style="width: 400px; height: 400px;" id="map"></div>
+
+  {% for i in img %}
+
+    <img src="{{ i.img_url }}">
+    
+    {% endfor %}
+    <!-- Не обращат внимания на ошибки, это джинжа -->
+    <script>// Initialize and add the map
+      function initMap() {
+        // The location of Uluru
+        const uluru = { lat: {{ place.lat }}, lng: {{ place.lon }} };
+        // The map, centered at Uluru
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 4,
+          center: uluru,
+        });
+        // The marker, positioned at Uluru
+        const marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+        });
+      }
+      
+      window.initMap = initMap;</script>>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeKgGbCqI1FPxHTcLcLBGUynk3cMVp-Nw&callback=initMap&v=weekly"
+      defer
+    ></script>
+
+  </body>
+</html>

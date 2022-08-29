@@ -1,0 +1,38 @@
+#mainNav a:hover{
+    color: #332a90;
+}
+
+#sign_in:hover{
+    background-color: #332a80;
+}
+#registration:hover{
+    background-color: #7661f8;
+}
+#accountIMG:hover{
+    box-shadow: 0px 0px 3px #332a90;
+}
+
+#middleNav button:hover{
+	background-color: #7661f8;
+}
+.navigationDiv:hover{
+    background-color: #332a70;
+
+}
+
+.moreInfo:hover{
+    background-color: #332a80;
+}
+
+tr:nth-of-type(1) td:nth-of-type(1):hover{
+    box-shadow: -5px -5px 2px #b9b9c4;
+}
+tr:nth-of-type(2) td:nth-of-type(1):hover{
+    box-shadow: -5px 5px 2px #b9b9c4;
+}
+tr:nth-of-type(1) td:nth-of-type(2):hover{
+    box-shadow: 5px -5px 2px #b9b9c4;
+}
+tr:nth-of-type(2) td:nth-of-type(2):hover{
+    box-shadow: 5px 5px 2px #b9b9c4;
+}

@@ -1,0 +1,26 @@
+.activeSlideButtton{
+	background-color: #332a61;
+	width: 21px;
+	height: 21px;
+}
+
+
+.show1{
+	transform: translateX(0);
+}
+.show2{
+	transform: translateX(-1236px);
+}
+.show3{
+	transform: translateX(-2472px);
+}
+.show4{
+	transform: translateX(-3708px);
+}
+.show5{
+	transform: translateX(-4944px);
+}
+
+.showInputDate{
+	transform: translateY(45px);
+}
