@@ -1,4 +1,4 @@
-FROM python:3.9.10
+FROM python:latest
 
 WORKDIR /usr/src/cnw
 
