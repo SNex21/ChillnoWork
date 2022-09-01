@@ -3,6 +3,7 @@ FROM python:3.9.10
 WORKDIR /usr/src/cnw
 
 COPY ./req.txt /usr/src/req.txt
+RUN pip install --upgrade pip
 RUN pip install -r /usr/src/req.txt
 RUN pip install jinja2
 
