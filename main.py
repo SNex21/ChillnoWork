@@ -56,7 +56,7 @@ def get_users(db: Session = Depends(get_db)):
 # Функция регистрации
 @app.post('/user/signup')
 def signup(user: schemas.SignupModel, db: Session = Depends(get_db)):
-    is_admin = False # по умолчанию не админ
+    is_admin = True # по умолчанию не админ
     db_user = crud.get_user_by_email(db, email=user.email) # Получение юзера через его email, полученный в схеме
     if db_user:
         raise HTTPException(status_code=400, detail="Email already registered") # Рейзим ошибку, если уже есть юзер с таким email

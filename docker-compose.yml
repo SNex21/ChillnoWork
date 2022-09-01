@@ -18,3 +18,11 @@ services:
       - 8000:8000
     depends_on:
       - postgres
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+    restart:
+      always
+    environment:
+      ADMINER_DESIGN: 'hydra'
