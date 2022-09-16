@@ -27,7 +27,7 @@ document.getElementById("leftArrow").addEventListener("mouseleave", function(){
 
 
 // кнопка вверх:
-let upper = document.getElementById("upBut");
+const upper = document.getElementById("upBut");
 
 window.addEventListener('scroll', function(){
 	let pageY = window.pageYOffset;
@@ -232,7 +232,7 @@ $(".slidesButs:eq(4)").click(function(){
 });
 
 //Календарь
-let date = document.getElementById("inpDate");
+const date = document.getElementById("inpDate");
 let count = 0;
 let sum = 3;
 let arr = [0, 0, ".", 0, 0, ".", 0, 0 ,0 ,0]; 
