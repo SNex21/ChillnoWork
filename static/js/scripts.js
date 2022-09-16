@@ -1,4 +1,5 @@
 //Начальные установки
+let show = 0;
 
 $(".slidesButs:eq(0)").addClass('activeSlideButtton');
 
