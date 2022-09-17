@@ -86,7 +86,7 @@ but.addEventListener("click", function(){
     };
     
     // open request
-    xhr.open('POST', 'http://127.0.0.1:8000/user/signup?');
+    xhr.open('POST', 'http://chillnowork.ru/user/signup?');
     
     // set `Content-Type` header
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -100,7 +100,7 @@ but.addEventListener("click", function(){
         
     
     if (xhr.status == 200){
-        window.location.href = "http://127.0.0.1:8000/";
+        window.location.href = "http://chillnowork.ru/";
     }
 
 };
