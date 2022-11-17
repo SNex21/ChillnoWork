@@ -13,16 +13,16 @@ $(function(){
 });
 
 document.getElementById("rightArrow").addEventListener("mouseenter", function(){
-	$("#rightArrow").attr("src", "http://chillnowork.ru/static/js/pics/arrow_right_hover.png");
+	$("#rightArrow").attr("src", "http://127.0.0.1:8000/static/js/pics/arrow_right_hover.png");
 });
 document.getElementById("leftArrow").addEventListener("mouseenter", function(){
-	$("#leftArrow").attr("src", "http://chillnowork.ru/static/js/pics/arrow_left_hover.png");
+	$("#leftArrow").attr("src", "http://127.0.0.1:8000/static/js/pics/arrow_left_hover.png");
 });
 document.getElementById("rightArrow").addEventListener("mouseleave", function(){
-	$("#rightArrow").attr("src", "http://chillnowork.ru/static/js/pics/arrow_right.png");
+	$("#rightArrow").attr("src", "http://127.0.0.1:8000/static/js/pics/arrow_right.png");
 });
 document.getElementById("leftArrow").addEventListener("mouseleave", function(){
-	$("#leftArrow").attr("src", "http://chillnowork.ru/static/js/pics/arrow_left.png");
+	$("#leftArrow").attr("src", "http://127.0.0.1:8000/static/js/pics/arrow_left.png");
 });
 
 

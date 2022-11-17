@@ -27,7 +27,7 @@ def get_places(db: Session):
     return db.query(models.Place).all()
 
 # Функция создания места
-def create_places(db: Session, place: dict, img: str):
+def create_places(db: Session, place: dict, img: str, adress:str):
     db_place = models.Place(
      name=place['name'],
      short_descr = place['short_descr'],
@@ -35,9 +35,11 @@ def create_places(db: Session, place: dict, img: str):
       description=place['description'],
        lon=place['lon'],
         lat=place['lat'],
+        adress=adress,
         near_city=place['near_city'],
         img=img,
-        url = place['url'])
+        url = place['url'],
+        category_id=place['category_id'])
     db.add(db_place)
     db.commit()
     db.refresh(db_place)
@@ -108,3 +110,29 @@ def get_id_by_email(email: str, db: Session):
         user = db.query(models.User).filter(models.User.email == email).first()
         return user.id
 
+import random
+import string
+
+
+def generate_random_string(length):
+    letters = string.ascii_lowercase
+    rand_string = ''.join(random.choice(letters) for i in range(length))
+    return rand_string
+
+def get_place_by_name_img(db: Session, name_img: str):
+    return db.query(models.Place).filter(models.Place.img == name_img).first()
+
+
+def create_category(db: Session, category: schemas.CreateCategory):
+    db_category = models.PlaceCategory(
+        name = category.name
+    )
+    db.add(db_category)
+    db.commit()
+    db.refresh(db_category)
+    return db_category
+    
+
+def get_category_by_name(db: Session, name:str):
+        cat = db.query(models.PlaceCategory).filter(models.PlaceCategory.name == name).first()
+        return cat

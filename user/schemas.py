@@ -39,7 +39,6 @@ class Place(BaseModel):
 
 # Схема создания места
 class CreatePlace(BaseModel):
-    token: str
     name: str
     short_descr: str
     price_from: int
@@ -48,6 +47,7 @@ class CreatePlace(BaseModel):
     lon:float
     near_city: str
     url: str
+    category_id: int
 
     class Config:
         orm_mode = True
@@ -76,6 +76,13 @@ class CreateParts(BaseModel):
     description: str
     price: int
     place_id: int
+
+    class Config:
+        orm_mode = True
+
+
+class CreateCategory(BaseModel):
+    name: str
 
     class Config:
         orm_mode = True

@@ -18,11 +18,10 @@ from typing import List
 import shutil
 from PIL import Image
 import os
-import user.test as test
+from user.test import get_location
 from typing import Union
-
+import json
 from fastapi import Cookie, FastAPI
-
 
 security = HTTPBearer()
 
@@ -92,33 +91,46 @@ def id(user_auth: schemas.AuthModel, db: Session = Depends(get_db)):
 
 # функция создания места
 @app.post('/create_place')
-def create_place(places: schemas.CreatePlace = Depends(),file: UploadFile = File(...),  db: Session = Depends(get_db), ):
-    place=places.dict() # переводим схему в словарь, для более удобного взаимодействия
-    if auth.check_auth_user(place['token']): # если токеном все ок
-        user_email = auth.decode_token(place['token'])
-        user = crud.get_user_by_email(db = db,email = user_email['sub']) # получаем юзера через имейл, полученный в токене
-        if user.is_admin: # пользователь должен быть админом
-            place_db = crud.get_places_by_name(db, name=place['name'])
-            if place_db: # если нет места с таким названием, то 
-                raise HTTPException(status_code=400, detail="Place already added") # рейзим ошибку
-            with open('static/media/'+file.filename, "wb") as image: # сохраняем картинки
-                shutil.copyfileobj(file.file, image)
-            img_path = str('static/media/' + file.filename)
-            fixed_width = 1600
-            img = Image.open(img_path)
-            height_size = 1000
-            new_image = img.resize((fixed_width, height_size)) # Обрезаем картинки
-            os.remove(img_path)
+def create_place(places: schemas.CreatePlace = Depends(), file: UploadFile = File(...), db: Session = Depends(get_db), res = Cookie(default=None),):
+    if res != None:
+        res = str(res)
+        res=res.replace( "'",'"') 
+        res = json.loads(res)
+        place=places.dict() # переводим схему в словарь, для более удобного взаимодействия
+        if auth.check_auth_user(res['access_token']): # если токеном все ок
+            user_email = auth.decode_token(res['access_token'])
+            user = crud.get_user_by_email(db = db,email = user_email['sub']) # получаем юзера через имейл, полученный в токене
+            if user.is_admin: # пользователь должен быть админом
+                place_db = crud.get_places_by_name(db, name=place['name'])
+                if place_db: # если есть места с таким названием, то 
+                    raise HTTPException(status_code=400, detail="Place already added") # рейзим ошибку
+                else:
+                    name, ext = os.path.splitext(file.filename)
+                    while True:
+                        file.filename = crud.generate_random_string(16)+ext
+                        if crud.get_place_by_name_img(db, name_img=file.filename) is None:
+                            break
+                    with open('static/media/'+file.filename, "wb") as image: # сохраняем картинки
+                        shutil.copyfileobj(file.file, image)
+                    img_path = str('static/media/' + file.filename)
+                    fixed_width = 1600
+                    img = Image.open(img_path)
+                    height_size = 1000
+                    new_image = img.resize((fixed_width, height_size)) # Обрезаем картинки
+                    os.remove(img_path)
+                    adress = get_location(place['lat'], place['lon']) #  получение широты и долготы места для отображения на карте
+                    new_image.save(img_path)
 
-            new_image.save(img_path)
+                    return crud.create_places(db=db, place=place, img = img_path, adress=adress) # создаем место, добавляя его в бд
 
-            return crud.create_places(db=db, place=place, img = img_path) # создаем место, добавляя его в бд
+            else:
+                raise HTTPException(status_code=400, detail="You are not admin")
 
         else:
-             raise HTTPException(status_code=400, detail="You are not admin")
-
+            raise HTTPException(status_code=400, detail="You are not auth")
     else:
-        raise HTTPException(status_code=400, detail="You are not auth")
+        raise HTTPException(status_code=400, detail="You are not auth")        
+
 
 
 #  создание части от места
@@ -165,6 +177,28 @@ def create_img(part_id: int, token: str, files: List[UploadFile] = File(...), db
         raise HTTPException(status_code=400, detail="You are not auth")
 
 
+@app.post('/create_category')
+def create_category(category: schemas.CreateCategory , db: Session = Depends(get_db),  res = Cookie(default=None)):
+    if res != None:
+        res = str(res)
+        res=res.replace( "'",'"') 
+        res = json.loads(res)
+        if auth.check_auth_user(res['access_token']): # если токеном все ок
+            user_email = auth.decode_token(res['access_token'])
+            user = crud.get_user_by_email(db = db,email = user_email['sub']) # получаем юзера через имейл, полученный в токене
+            if user.is_admin: # пользователь должен быть админом
+                category_db = crud.get_category_by_name(db, name=category.name)
+                if category_db: # если есть места с таким названием, то 
+                    raise HTTPException(status_code=400, detail="Category already added") # рейзим ошибку
+                else:
+                    crud.create_category(db=db, category=category)
+                    return {'message': 'Succesful, created category'}
+            else:
+                raise HTTPException(status_code=400, detail="You are not admin")
+        else:
+            raise HTTPException(status_code=400, detail="You are not auth")         
+
+
 # функция обновления токена
 @app.post('/refresh_token', response_model=schemas.Token)
 def refresh_token(token: schemas.Token):
@@ -185,7 +219,7 @@ def get_main(request: Request, db: Session = Depends(get_db)):
 @app.get("/{url}", response_class=HTMLResponse)
 def get_place(url:str, request: Request, db: Session = Depends(get_db)):
     place = crud.get_place_by_url(db=db, url = url) # получение места через юрл, заданный в запросе
-    location = test.get_location(place.lat, place.lon) #  получение широты и долготы места для отображения на карте
+    location = place.adress
     parts = crud.get_parts_by_id(db = db, place_id = place.id) # получение частей места 
 
     return templates.TemplateResponse("place.html", {"request": request, "place": place, 'location': location, 'parts': parts}) # передача в шаблон

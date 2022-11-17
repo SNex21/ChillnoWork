@@ -25,8 +25,11 @@ class Place(Base):
     img = Column(String(200))
     lat = Column(Float, unique=True)
     lon = Column(Float, unique=True)
+    adress=Column(String(200), unique=True)
     near_city = Column(String(100))
     url = Column(String(100), unique = True)
+    category_id = Column(Integer, ForeignKey("place_category.id"))
+
 
     place_parts = relationship("Parts")
 
@@ -59,3 +62,9 @@ class ListImg(Base):
     part_id = Column(Integer, ForeignKey("parts.id"))
 
 
+class PlaceCategory(Base):
+    __tablename__='place_category'
+
+    id = Column(Integer, primary_key=True, unique=True)
+    name = Column(String(100), unique=True)
+    place = relationship("Place")

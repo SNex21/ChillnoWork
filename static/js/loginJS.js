@@ -77,7 +77,7 @@ but.addEventListener("click", function(){
     };
     
     // open request
-    xhr.open('POST', 'http://chillnowork.ru/user/login?');
+    xhr.open('POST', 'http://127.0.0.1:8000/user/login?');
     
     // set `Content-Type` header
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -96,7 +96,7 @@ but.addEventListener("click", function(){
         
 
     if (xhr.status == 200 ){
-        xhr.open('POST', 'http://chillnowork.ru/user/id?');
+        xhr.open('POST', 'http://127.0.0.1:8000/user/id?');
         const json_id = {
             "email": eml,
             "password": psw
@@ -110,7 +110,7 @@ but.addEventListener("click", function(){
     
         
     
-        window.location.href = "http://chillnowork.ru/";
+        window.location.href = "http://127.0.0.1:8000/";
     }else{
         alert(response['detail']);
     }
